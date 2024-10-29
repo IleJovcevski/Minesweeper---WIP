@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=window-width, initial-scale=1.0">
+    <title>Minesweeper</title>
+    <link rel="stylesheet" media="screen" href="https://fontlibrary.org//face/lcd" type="text/css"/>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css">
+</head>
+<body>
+    <div class="game-container">
+        <div class="menu-bar">
+            <p class="file-dropdown" onclick="openFileDropdown()">Game</p>
+            <p>Help</p>
+        </div>
+        <div id="fileDropdown" class="dropdown-content">
+            <a href="#">Beginner</a>
+            <a href="#">Intermediate</a>
+            <a href="#">Expert</a>
+            <button onclick="aGame.create()">New Game</button>
+        </div>
+        <div class="puzzle-container">
+            <div class="score-bar">
+                <div class="mines-left">
+                    <div class="lcd">
+                        <span class="lcd-background">888</span>
+                        <span class="lcd-digits" id="mines-left">010</span>
+                        <p>&nbsp</p>
+                    </div>
+                </div>
+                <div class="smiley-holder">
+                    <div class="button-holder" 
+                            onmousedown="this.className = 'clicked'"
+                            onmouseup="setTimeout(() => {this.className = 'button-holder'}, 200)">
+                        <button id="button" 
+                            onclick="aGame.create()">
+                        </button>
+                    </div> 
+                </div>
+                <div class="time-display">
+                    <div class="lcd">
+                        <span class="lcd-background">888</span>
+                        <span class="lcd-digits" id="timer">000</span>
+                        <p>&nbsp</p>
+                    </div>
+                </div>
+            </div>
+            <table id="table" class="puzzle" oncontextmenu="return false;">                
+            </table>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

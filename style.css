@@ -1,0 +1,424 @@
+@font-face {
+    font-family: digitalFont;
+    src: url(resources/DSEG7Classic-Bold.woff2);
+}
+
+@font-face {
+    font-family: mineDigitsFont;
+    src: url(resources/mine-sweeper.ttf);
+}
+
+:root {
+    --main-grey: #C0C0C0;
+    --dark-grey: #808080;
+    --light-grey: #FFFFFF;
+    --digit-on: #FF0000;
+    --digit-off: rgba(255,0,0,0.15);
+    --faint-red: #800000;
+    --lcd-black: #000000;
+    --smiley-yellow: #FFFF10;
+}
+
+body {
+    font-family: system-ui;
+    border-style: solid;
+    border-color: var(--light-grey) var(--dark-grey) var(--dark-grey) var(--light-grey);
+    border-width: 3px;
+    background-color: var(--main-grey);
+    margin: auto;
+    width: fit-content;
+}
+
+.game-container {
+    padding: 5px;
+    width: 345px;
+}
+
+.menu-bar {
+    display: flex;
+    height: 22px;
+}
+
+.menu-bar p {
+    padding-right: 10px;
+    margin: 0px;
+}
+
+.puzzle-container {
+    border-style: solid;
+    border-color: var(--light-grey) var(--dark-grey) var(--dark-grey) var(--light-grey);
+}
+
+.score-bar {
+    display: grid;
+    grid-template-columns: 34% 32% 34%;
+    font-family: digitalFont;
+    font-weight: normal;
+    padding: 5px;
+    font-size: xx-large;
+    text-align: center;
+    align-items: center;
+    border-style: solid;
+    border-color: var(--dark-grey) var(--light-grey) var(--light-grey) var(--dark-grey);
+}
+
+.score-bar p {
+    margin: 0px;
+    padding: 5px;
+    padding-top: 10px;
+}
+
+.file-dropdown {
+    cursor: pointer;
+}
+
+.show {
+    display: flex !important;
+    flex-direction: column;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: var(--main-grey);
+    min-width: 160px;
+    overflow: auto;
+    border: 1px solid black;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 200;
+  }
+  
+
+.lcd {
+    position: relative;
+    background-color: var(--lcd-black);
+    width: 85%;
+    height: 60%;
+    margin: auto;
+}
+
+.lcd-background {
+    z-index: 50;
+    position: absolute;
+    top: 5px;
+    left: 15px;
+    color: var(--digit-off);
+}
+
+.lcd-digits {
+    z-index: 100;
+    position: absolute;
+    top: 5px;
+    left: 15px;
+    color: var(--digit-on);
+}
+
+.smiley-holder {
+    margin: auto;
+    font-size: medium;
+}
+
+.button-holder {
+    width: 33px;
+    height: 33px;
+    border-style: solid;
+    border-color: var(--light-grey) var(--dark-grey) var(--dark-grey) var(--light-grey);
+    border-width: 5px;
+}
+
+.clicked {
+    width: 33px;
+    height: 33px;
+    border-style: solid;
+    border-color: var(--dark-grey) var(--light-grey) var(--light-grey) var(--dark-grey);
+    border-width: 5px;
+}
+
+.smiley-holder button {
+    background: none;
+	color: inherit;
+	border: none;
+	padding: 0;
+    background-color: transparent;
+    background-image: url(./images/smiley-smiling.png);
+    background-repeat: no-repeat;
+    background-size: 30px 30px;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    margin-top: 2px;
+}
+
+button.excited {
+    background-color: transparent;
+    background-image: url(./images/smiley-waiting.png);
+    background-repeat: no-repeat;
+    background-size: 30px 30px;
+    width: 30px;
+    height: 30px;
+    margin-top: 2px;
+}
+
+button.dead {
+    background-color: transparent;
+    background-image: url(./images/smiley-exploded.png);
+    background-repeat: no-repeat;
+    background-size: 30px 30px;
+    width: 30px;
+    height: 30px;
+    margin-top: 2px;
+}
+
+.dead i {
+    display: none;
+}
+
+button.won {
+    background-color: transparent;
+    background-image: url(./images/smiley-solved.png);
+    background-repeat: no-repeat;
+    background-size: 30px 30px;
+    width: 30px;
+    height: 30px;
+    margin-top: 2px;
+}
+
+.won i {
+    display: none;
+}
+
+.puzzle {
+    width: 100%;
+    border-spacing: 0;
+    border-style: solid;
+    border-color: var(--dark-grey) var(--light-grey) var(--light-grey) var(--dark-grey);
+    border-width: 3px;
+    margin-top: 20px;
+    font-family: mineDigitsFont;
+}
+
+.cell {
+    border-style: solid;
+    border-color: var(--light-grey) var(--dark-grey) var(--dark-grey) var(--light-grey);
+    border-width: 3px;
+    width: 27px;
+    height: 27px;
+    color: transparent;
+}
+
+.cell img {
+    display: none;
+}
+
+.revealed {
+    border-style: solid;
+    border-color: var(--dark-grey);
+    border-width: 1px;
+    width: 31px;
+    height: 31px;
+    background-color: var(--main-grey);
+}
+
+.zero {
+    color: transparent;
+}
+
+.one {
+    color: blue;
+}
+
+.two {
+    color: #017E00;
+}
+
+.three {
+    color: #FE0001;
+}
+
+.four {
+    color: #010080;
+}
+
+.five {
+    color: #810101;
+}
+
+.six {
+    color: #008080;
+}
+
+.seven {
+    color: #000000;
+}
+
+.eight {
+    color: #808080;
+}
+
+.mine {
+    color: transparent;
+    background-image: url(./images/active-mine.png);
+    background-repeat: no-repeat;
+    background-size: 37px 35px;
+}
+
+.puzzle div {
+    text-align: center;
+    font-size: large;
+    font-weight: bold;
+    width: 100%;
+    height: 100%;
+    overflow:hidden;
+}
+
+.revealed img {
+    display: none;
+}
+
+.flagged {
+    width: 27px;
+    height: 27px;
+    padding: 0px;
+    margin: 0px;
+    border: none;
+    text-align: -webkit-center;
+    color: transparent;
+    background-image: url(./images/1024px-Minesweeper_flag_bordered-thin.png);
+    background-repeat: no-repeat;
+    background-size: 37px 35px;
+}
+
+.flagged img {
+    display: none;
+    width: 32.77px;
+    height: auto;
+}
+
+.flagged div {
+    display: none;
+}
+
+#smiley-big {
+    display: none;
+}
+
+.game-over {
+    pointer-events: none;
+}
+
+@media only screen and (min-width: 768px) {
+
+    .game-container {
+        padding: 5px;
+        width: 540px;
+    }
+
+    .menu-bar {
+        height: 34px;
+    }
+
+    .score-bar {
+        font-size: xxx-large;
+    }
+
+    .smiley-holder {
+        font-size: inherit;
+        width: 62px;
+        height: 62px;
+    }
+
+    .smiley-holder button {
+        background-size: 44px 44px;
+        width: 44px;
+        height: 44px;
+        margin-top: 4px;
+    }
+
+    .button-holder {
+        width: 52px;
+        height: 52px;
+    }
+
+    .clicked {
+        width: 52px;
+        height: 52px;
+    }
+
+    .far fa-smile fa-2x {
+        font-size: 3em;
+    }
+
+    #smiley {
+        display: none;
+    }
+
+    #smiley-big {
+        display: block;
+    }
+
+    button.dead {
+        background-size: 44px 44px;
+        width: 44px;
+        height: 44px;
+        margin-top: 4px;
+    }
+
+    button.dead #smiley-big {
+        display: none;
+    }
+    
+    .dead i {
+        display: none;
+    }
+    
+    button.won {
+        background-size: 44px 44px;
+        width: 44px;
+        height: 44px;
+        margin-top: 4px;
+    }
+
+    .won #smiley-big {
+        display: none;
+    }
+
+    .puzzle {
+        margin-top: 30px;
+    }
+
+    .puzzle div {
+        padding-top: 20px;
+    }
+
+    .cell {
+        width: 48px;
+        height: 48px;
+    }
+
+    .cell img {
+        display: none;
+    }
+
+    .revealed {
+        width: 52px;
+        height: 52px;
+    }
+
+    .mine {
+        background-size: 58px 56px;
+    }
+
+    .flagged {
+        width: 48px;
+        height: 48px;
+        padding: 0px;
+        margin: 0px;
+        background-size: 58px 56px;
+    }
+
+    .flagged img {
+        display: block;
+        width: 53.77px;
+        height: auto;
+    }
+} 
