@@ -1,0 +1,1 @@
+A Minewseeper clone, created by using just basic Javascript, CSS and HTML. Not all features are fully implemented but the base game is functional for small sized boards. Just run the index.html in your browser. 
